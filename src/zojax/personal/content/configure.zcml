@@ -1,0 +1,82 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:i18n="http://namespaces.zope.org/i18n"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.personal.content">
+
+  <permission
+     id="zojax.PersonalContent"
+     title="Personal content"
+     description="Allow personal content for member." />
+
+  <!-- content workspace -->
+  <class class=".workspace.ContentWorkspace">
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+    <require
+       permission="zope.View"
+       interface=".interfaces.IContentWorkspace
+		  zojax.content.type.interfaces.IItem
+		  zope.app.container.interfaces.IReadContainer" />
+  </class>
+
+  <adapter factory=".workspace.ContentSized" />
+  <adapter factory=".workspace.getDraftContainer" />
+  <adapter factory=".workspace.getContentWorkspace" />
+
+  <!-- content workspace factory -->
+  <adapter
+     name="content"
+     factory=".workspace.ContentWorkspaceFactory" />
+
+  <subscriber handler=".workspace.contentWorkspaceAdded" />
+
+  <utility
+     name="content"
+     factory=".workspace.ContentWorkspaceDescription" />
+
+  <!-- personal content permission -->
+  <zojax:permission
+     permission="zojax.PersonalContent"
+     category="zojax.personal.space.interfaces.IPersonalPermission" />
+
+  <!-- review workspace -->
+  <class class=".review.ReviewWorkspace">
+    <require
+       permission="zope.Public"
+       interface=".interfaces.IReviewWorkspace
+		  zope.publisher.interfaces.browser.IBrowserPublisher" />
+  </class>
+
+  <adapter
+     name="review"
+     factory=".review.ReviewWorkspaceFactory" />
+
+  <subscriber
+     for="zojax.content.draft.interfaces.IDraftEvent"
+     handler=".review.updateReviewTag" />
+
+  <!-- activity -->
+  <include file="activity.zcml" />
+
+  <!-- email notifications -->
+  <include file="notifications.zcml" />
+
+  <!-- top contributors support -->
+  <include file="topcontributors.zcml" />
+
+  <!-- portlets -->
+  <include package=".portlets" />
+
+  <!-- browser views -->
+  <include package=".browser" />
+
+  <!-- translations -->
+  <i18n:registerTranslations directory="locales" />
+
+  <!-- generations -->
+  <utility
+     name="zojax.personal.content"
+     provides="zope.app.generations.interfaces.ISchemaManager"
+     component=".generations.schemaManager" />
+
+</configure>

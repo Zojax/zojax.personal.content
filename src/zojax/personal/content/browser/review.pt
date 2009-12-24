@@ -1,0 +1,6 @@
+<tal:block i18n:domain="zojax.personal.content">
+  <h1 i18n:translate="">Review content</h1>
+  <div class="z-page-description" i18n:translate="">List of submitted content.</div>
+
+  <tal:block content="structure provider:review.personal.content" />
+</tal:block>

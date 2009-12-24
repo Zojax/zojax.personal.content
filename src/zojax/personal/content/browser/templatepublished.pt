@@ -1,0 +1,15 @@
+<h2>Your content has been published.</h2>
+<br />
+
+Content: "<a tal:content="view/title"
+	    tal:attributes="href view/url"></a>".
+<br />
+<tal:block condition="view/comment">
+Comment: <tal:block content="view/comment" />
+</tal:block>
+<br /><br />
+<hr />
+<div>
+  Site: <a tal:attributes="href string:${view/site/@@absolute_url}/"
+	   tal:content="view/site/title"></a>
+</div>

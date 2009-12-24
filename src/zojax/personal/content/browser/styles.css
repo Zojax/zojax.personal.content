@@ -1,0 +1,13 @@
+/* zrt-cssregistry: */
+
+@media all { 
+
+  #workspace-content .z-table { 
+    font-size: 110%;
+  }
+
+  .portlet-yourstuff .z-portlet-selecteditem {
+    font-weight: bold;
+  }
+  
+}

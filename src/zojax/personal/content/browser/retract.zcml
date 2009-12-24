@@ -1,0 +1,24 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.personal.content">
+
+  <adapter
+     name="content.retract"
+     factory=".retract.RetractContentAction" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="resources/retract.png"
+     for=".interfaces.IRetractContentAction" />
+
+  <!-- retract view -->
+  <zojax:pagelet
+     name="retract.html"
+     for="zojax.content.type.interfaces.IContent"
+     template="retract.pt"
+     class=".retract.RetractContent"
+     permission="zope.View" />
+
+</configure>

@@ -1,0 +1,15 @@
+<div class="z-portlet portlet-workspace-content-actions" i18n:domain="zojax.personal.content">
+  <h2 class="z-portlet-header" i18n:translate="">Actions</h2>
+  <div class="z-portlet-body">
+    <div class="z-portlet-item">
+      <ul class="z-listing">
+	<li tal:repeat="element view/elements">
+	  <a tal:attributes="href element/url">
+	    <tal:block content="structure element/@@zmi_icon|nothing" />
+	    <tal:block tal:content="element/title"/>
+	  </a>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>

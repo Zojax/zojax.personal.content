@@ -1,0 +1,159 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.personal.content">
+
+  <include file="activity.zcml" />
+  <include file="retract.zcml" />
+
+  <!-- workspace -->
+  <browser:defaultView
+     name="index.html"
+     for="..interfaces.IContentWorkspace" />
+
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IContentWorkspace"
+     template="workspace.pt"
+     class=".workspace.WorkspaceView"
+     permission="zope.View" />
+
+  <adapter factory=".breadcrumb.ContentWorkspaceBreadcrumb" />
+
+  <!-- contents table -->
+  <adapter
+     name="personal.content"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".table.PersonalContentTable" />
+
+  <adapter
+     name="personal.content"
+     for=".interfaces.IWorkspaceContentType * *"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".table.PersonalContentTable" />
+
+  <adapter
+     name="personal.drafts"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".table.PersonalDraftsTable" />
+
+  <adapter
+     name="personal.drafts"
+     for=".interfaces.IWorkspaceContentType * *"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".table.PersonalDraftsTable" />
+
+  <adapter
+     name="location"
+     factory=".table.LocationColumn" />
+
+  <adapter
+     name="draftstatus"
+     factory=".table.DraftStatusColumn" />
+
+  <!-- workspace publisher -->
+  <adapter
+     for="..interfaces.IContentWorkspace *"
+     factory="z3c.traverser.traverser.PluggableTraverser"
+     provides="zope.publisher.interfaces.IPublishTraverse" />
+
+  <subscriber
+     for="..interfaces.IContentWorkspace *"
+     provides="z3c.traverser.interfaces.ITraverserPlugin"
+     factory=".workspace.WorkspacePublisherPlugin" />
+
+  <!-- content type -->
+  <zojax:pagelet
+     name="index.html"
+     for=".interfaces.IWorkspaceContentType"
+     template="contenttype.pt"
+     class=".contenttype.ContentTypeView"
+     permission="zope.View" />
+
+  <zojax:pagelet
+     name="create.html"
+     for=".interfaces.IWorkspaceContentType"
+     class=".contenttype.CreateDraft"
+     permission="zojax.ModifyContent" />
+
+  <adapter
+     name="workspace.content.create"
+     factory=".contenttype.CreateContentAction" />
+
+  <adapter
+     name="zmi_icon"
+     factory=".contenttype.CreateContentActionIcon" />
+
+ <!-- review workspace -->
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IReviewWorkspace"
+     template="review.pt" />
+
+  <!-- review contents table -->
+  <adapter
+     name="review.personal.content"
+     provides="zope.contentprovider.interfaces.IContentProvider"
+     factory=".review.ReviewContentTable" />
+
+  <adapter
+     name="title"
+     factory=".review.TitleColumn" />
+
+  <adapter
+     name="location"
+     factory=".review.LocationColumn" />
+
+  <!-- email notification template -->
+  <zojax:mailtemplate
+     for="* zojax.content.draft.interfaces.IDraftSubmittedEvent"
+     contentType="text/html"
+     template="template.pt"
+     class=".template.NotificationMail"
+     provides="zojax.content.notifications.interfaces.INotificationMailTemplate"
+     />
+
+  <zojax:mailtemplate
+     for="zojax.content.draft.interfaces.IDraftRejectedEvent"
+     contentType="text/html"
+     template="templaterejected.pt"
+     class=".template.RejectedNotificationMail" />
+
+  <subscriber handler=".template.draftRejectedHandler" />
+
+  <zojax:mailtemplate
+     for="zojax.content.draft.interfaces.IDraftPublishedEvent"
+     contentType="text/html"
+     template="templatepublished.pt"
+     class=".template.PublishedNotificationMail" />
+
+  <subscriber handler=".template.draftPublishedHandler" />
+
+ <!-- styles -->
+  <zojax:resourceinclude
+     name="zojax-personal-content.css"
+     library="zojax"
+     type="stylesheet" file="styles.css" filetype="zrt" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="resources/content.png"
+     for="..interfaces.IContentWorkspaceFactory" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="resources/review.png"
+     for="..interfaces.IReviewWorkspaceFactory" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="resources/content.png"
+     for="..interfaces.IContentWorkspace" />
+
+  <browser:icon
+     name="icon-overview"
+     file="resources/overview.gif"
+     for="..interfaces.IContentWorkspace" />
+
+</configure>

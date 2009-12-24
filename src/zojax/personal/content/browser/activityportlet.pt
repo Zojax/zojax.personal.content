@@ -1,0 +1,11 @@
+<div class="t-avatar" tal:condition="view/avatar">
+  <a href="#" tal:attributes="href view/profile" tal:omit-tag="not:view/profile">
+    <img src="" tal:attributes="title view/author; src view/avatar" />
+  </a>
+</div>
+<a tal:attributes="href view/profile" tal:content="view/author"
+   tal:omit-tag="not:view/profile"></a>  
+<span class="activity-verb" tal:content="view/verb" i18n:translate=""/>
+<a tal:attributes="href view/url; title view/description"
+   tal:content="view/title" tal:omit-tag="not:view/url"></a>
+<div class="z-portlet-item-details" tal:content="view/date" i18n:translate=""></div>

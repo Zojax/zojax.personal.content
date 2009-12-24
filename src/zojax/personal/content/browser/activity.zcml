@@ -1,0 +1,25 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.personal.content">
+
+  <!-- activity record description view -->
+  <zojax:pagelet
+     type="zojax.content.activity.interfaces.IActivityRecordDescriptionView"
+     for="..interfaces.IDraftStatusActivityRecord"
+     template="activity.pt"
+     class=".activity.DraftStatusRecordView" />
+
+  <zojax:pagelet
+     type="zojax.content.activity.interfaces.IActivityRecordDescriptionView"
+     for="..interfaces.IDraftPublishedActivityRecord"
+     template="activity.pt"
+     class=".activity.DraftPublishedRecordView" />
+
+  <zojax:pagelet
+     type="zojax.content.activity.interfaces.IActivityPortletRecordView"
+     for="..interfaces.IDraftStatusActivityRecord"
+     template="activityportlet.pt" 
+     class=".activity.DraftStatusPortletRecordView" />
+
+</configure>

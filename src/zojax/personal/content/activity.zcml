@@ -1,0 +1,39 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  
+  <class class=".activity.DraftStatusActivityRecord">
+    <require
+       permission="zope.Public"
+       interface="zojax.activity.interfaces.IActivityRecord" />
+  </class>
+
+  <utility
+     name="draft-status"
+     factory=".activity.DraftStatusActivityRecordDescription" />
+
+  <class class=".activity.DraftPublishedActivityRecord">
+    <require
+       permission="zope.Public"
+       interface="zojax.activity.interfaces.IActivityRecord" />
+  </class>
+
+  <utility
+     name="draft-published"
+     factory=".activity.DraftPublishedActivityRecordDescription" />
+
+  <class class=".activity.ObjectRetractedActivityRecord">
+    <require
+       permission="zope.Public"
+       interface="zojax.activity.interfaces.IActivityRecord" />
+  </class>
+
+  <utility
+     name="draft-object-retracted"
+     factory=".activity.ObjectRetractedActivityRecordDescription" />
+
+  <subscriber handler=".activity.draftSubmittedHandler" />
+  <subscriber handler=".activity.draftRejectedHandler" />
+  <subscriber handler=".activity.draftRetractedHandler" />
+  <subscriber handler=".activity.draftPublishedHandler" />
+  <subscriber handler=".activity.objectRetractedHandler" />
+
+</configure>

@@ -1,0 +1,149 @@
+=============
+Browser tests
+=============
+
+    >>> from zope import interface, component, event
+    >>> from zope.app.intid.interfaces import IIntIds
+    >>> from zope.lifecycleevent import ObjectModifiedEvent, ObjectCreatedEvent
+    >>> from zope.security.management import newInteraction, endInteraction
+    >>> from zope.security.management import checkPermission, getInteraction
+    >>> from zope.app.security.interfaces import IAuthentication
+
+    >>> from zojax.personal.content import interfaces
+    >>> from zojax.personal.content.tests import content
+
+    >>> ids = component.getUtility(IIntIds)
+    >>> auth = component.getUtility(IAuthentication)
+
+Interaction
+
+    >>> class Participation:
+    ...     interaction = None
+    ...     def __init__(self, principal):
+    ...         self.principal = principal
+
+    >>> newInteraction(Participation(auth.getPrincipal('zope.mgr')))
+
+    >>> root = getRootFolder()
+
+    >>> container = content.Container1(title=u'Container 1')
+    >>> event.notify(ObjectCreatedEvent(container))
+
+    >>> root['container1'] = container
+    >>> container1ID = ids.getId(root['container1'])
+
+    >>> container = content.Container2(title=u'Container 2')
+    >>> event.notify(ObjectCreatedEvent(container))
+
+    >>> root['container2'] = container
+    >>> container2ID = ids.getId(root['container2'])
+
+    >>> from zope.securitypolicy.interfaces import IPrincipalPermissionManager
+    >>> IPrincipalPermissionManager(
+    ...     root['container1']).grantPermissionToPrincipal(
+    ...         'test.SubmitContent2', 'zope.user')
+    >>> IPrincipalPermissionManager(
+    ...     root['container2']).grantPermissionToPrincipal(
+    ...         'test.AddContent2', 'zope.user')
+
+    >>> event.notify(ObjectModifiedEvent(root['container1']))
+    >>> event.notify(ObjectModifiedEvent(root['container2']))
+    >>> endInteraction()
+
+Browser tests
+
+    >>> from zope.testbrowser.testing import Browser
+    
+    >>> user = Browser()
+    >>> user.addHeader("Authorization", "Basic user:userpw")
+    >>> user.handleErrors = False
+
+    >>> user.open('http://localhost/container1/')
+    >>> user.getLink('Personal space').click()
+
+Content workspace
+
+    >>> 'Your stuff' in user.contents
+    False
+
+    >>> from zope.securitypolicy.interfaces import IPrincipalPermissionManager
+    >>> IPrincipalPermissionManager(getRootFolder()).grantPermissionToPrincipal(
+    ...     'zojax.PersonalContent', 'zope.user')
+
+    >>> user.reload()
+    >>> 'Your stuff' in user.contents
+    True
+
+    >>> user.getLink('Your stuff').click()
+    >>> print user.contents
+    <html>
+    ...
+    <h2>Your Latest Content</h2>
+    <div class="z-page-description">Below is a list of content items you created.</div>
+    <div class="z-table-container">
+      <div class="z-table-emtpy">You do not have any content.</div>
+    </div>
+    ...
+    <div class="z-portlet portlet-yourstuff">
+    <h2 class="z-portlet-header">Your Stuff</h2>
+    <div class="z-portlet-body">
+      <div class="z-portlet-item even">
+        <img src="..." />
+        <a href="http://localhost/people/user/content/">
+           Overview</a>
+      </div>
+      <div class="z-portlet-item odd">
+        <img src="..." alt="ContentType" width="16" height="16" border="0" />
+        <a href="http://localhost/people/user/content/tests.content2/"
+           title="">
+           Content2
+        </a>
+      </div>
+    </div>
+    ...
+    </html>
+    
+    >>> user.getLink('Content2').click()
+    >>> print user.contents
+    <html>
+    ...
+    ...<div class="personal-content">
+    <h2>Your Content: Content2</h2>
+    <div class="z-page-description"></div>
+    <div class="z-table-container">
+      <div class="z-table-emtpy">You do not have any content.</div>
+    </div>
+    ...
+    ...<div class="z-portlet portlet-actions">
+      <h2 class="z-portlet-header">Actions</h2>
+      <div class="z-portlet-body">
+        <div class="z-portlet-item">
+          <ul class="z-listing">
+            <li class="even">
+              <a href="create.html">
+                 <img ... />
+                 Create: Content2</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="z-portlet portlet-yourstuff">
+      <h2 class="z-portlet-header">Your Stuff</h2>
+      <div class="z-portlet-body">
+        <div class="z-portlet-item even">
+          <img src="..." />
+          <a href="http://localhost/people/user/content/">
+             Overview</a>
+        </div>
+        <div class="z-portlet-item z-portlet-selecteditem odd">
+          <img src="..." alt="ContentType" width="16" height="16" border="0" />
+          <a href="http://localhost/people/user/content/tests.content2/" title="">
+            Content2
+          </a>
+        </div>
+      </div>
+    </div>...
+    ...
+    </html>
+
