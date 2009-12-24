@@ -1,0 +1,45 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.personal.content">
+
+  <!-- portlets manager for content worksace -->
+  <zojax:portletManager
+     name="columns.left"
+     for="..interfaces.IContentWorkspace"
+     title="Your stuff left column"
+     portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet"
+     class="zojax.personal.space.portletmanager.PortletManager" />
+
+  <zojax:portletManager
+     name="columns.right"
+     for="..interfaces.IContentWorkspace"
+     title="Your stuff right column"
+     schema=".interfaces.IWorkspaceContentPortletManager"
+     portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet"
+     class="zojax.personal.space.portletmanager.PortletManager" />
+
+  <!-- portlets manager for review worksace -->
+  <zojax:portletManager
+     name="columns.left"
+     for="..interfaces.IReviewWorkspace"
+     title="Review workspace left portlets"
+     portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
+
+  <zojax:portletManager
+     name="columns.right"
+     for="..interfaces.IReviewWorkspace"
+     title="Review workspace right portlets"
+     schema=".interfaces.IWorkspaceContentPortletManager"
+     portlettype="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
+
+  <!-- your stuff portlet -->
+  <zojax:portlet
+     title="Your Stuff"
+     name="workspace.content.yourstuff"
+     for="..interfaces.IContentWorkspace"
+     class=".stuff.YourStuffPortlet"
+     template="stuff.pt"
+     type="zojax.personal.space.interfaces.IPersonalWorkspacePortlet" />
+
+</configure>

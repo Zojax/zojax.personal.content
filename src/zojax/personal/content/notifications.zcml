@@ -1,0 +1,20 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <adapter 
+     name="draft"
+     for="zope.app.component.interfaces.ISite"
+     factory=".notifications.getDraftNotification" />
+
+  <class class=".notifications.DraftNotification">
+    <require
+       permission="zope.View"
+       interface=".notifications.IDraftNotification" />
+  </class>
+
+  <subscriber handler=".notifications.draftStatusChanged" />
+
+  <utility
+     name="draft"
+     factory=".notifications.DraftNotificationDescription" />
+
+</configure>

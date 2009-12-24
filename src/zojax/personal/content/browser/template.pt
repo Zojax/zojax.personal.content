@@ -1,0 +1,13 @@
+<h2>New content has been submitted.</h2>
+<br />
+
+User "<a tal:content="view/author" tal:omit-tag="not:view/space"
+	 tal:attributes="href view/space"></a>" submitted content
+<a tal:attributes="href view/url" tal:content="context/title"></a>
+for review.
+<br /><br />
+<hr />
+<div>
+  Site: <a tal:attributes="href string:${view/site/@@absolute_url}/"
+	   tal:content="view/site/title"></a>
+</div>

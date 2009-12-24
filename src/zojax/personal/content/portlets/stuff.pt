@@ -1,0 +1,27 @@
+<div class="z-portlet portlet-yourstuff" i18n:domain="zojax.personal.content">
+
+  <h2 class="z-portlet-header" i18n:translate="">Your Stuff</h2>
+
+  <div class="z-portlet-body">
+
+    <div class="z-portlet-item even">
+      <img src="#" tal:attributes="src view/container/@@icon-overview/url" />
+      <a tal:attributes="href string:${view/url}/" i18n:translate="">
+	Overview</a>
+    </div>
+
+    <tal:block repeat="info view/addingInfo">
+      <div class="z-portlet-item"
+           tal:define="klass python:info['selected'] and 
+		       'z-portlet-item z-portlet-selecteditem' or 'z-portlet-item'"
+           tal:attributes="class python:repeat['info'].odd() and 
+	                   '%s even'%klass or '%s odd'%klass">
+	<tal:block content="structure info/icon" />
+	<a href="#" tal:attributes="href info/action; title info/description">
+          <tal:block tal:content="info/title"></tal:block>
+	</a>
+      </div>
+    </tal:block>
+
+  </div>
+</div>

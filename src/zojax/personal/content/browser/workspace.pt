@@ -1,0 +1,17 @@
+<div class="personal-content" i18n:domain="zojax.personal.content">
+  <h2 tal:content="view/label" i18n:translate=""></h2>
+  <div class="z-page-description" tal:content="view/description"
+       i18n:translate=""></div>
+
+  <tal:block content="structure provider:personal.content" />
+  <br /><br />
+</div>
+
+<div class="personal-content"
+     i18n:domain="zojax.personal.content" tal:condition="view/drafts">
+ <h2 i18n:translate="">Your Drafts</h2>
+  <div class="z-page-description" i18n:translate="">
+    Below is a list of your drafts.</div>
+
+  <tal:block content="structure view/drafts/render" />
+</div>
