@@ -1,0 +1,10 @@
+<tr>
+<td>
+<div class="z-form-controls">
+<input type="submit" class="z-form-removebutton" 
+       value="Remove" name="form.button.remove" />
+<input type="submit" class="z-form-button" 
+       value="Publish" name="form.button.publish" />
+    </div>
+</td>
+</tr>

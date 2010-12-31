@@ -43,6 +43,22 @@
      for=".interfaces.IWorkspaceContentType * *"
      provides="zope.contentprovider.interfaces.IContentProvider"
      factory=".table.PersonalDraftsTable" />
+     
+  <!-- table buttons -->
+  <zojax:pagelet
+     type="table.footer"
+     for=".table.PersonalDraftsTable *"
+     template="tablebuttons.pt" />
+     
+  <!-- table view -->
+  <zojax:pagelet
+     type="table.view"
+     for=".table.PersonalDraftsTable *"
+     template="personaldrafts.pt" />
+     
+  <adapter name="id"
+           for="* * .table.PersonalDraftsTable"
+           factory=".table.DraftIdColumn" />
 
   <adapter
      name="location"

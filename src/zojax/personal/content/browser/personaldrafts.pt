@@ -1,0 +1,36 @@
+<div class="z-table-container">
+  <form name="personalDraftsForm" method="post"
+        tal:attributes="action request/URL">
+  <table tal:condition="context"
+	 tal:attributes="id context/id; class context/cssClass">
+    <thead>
+      <tr class="z-table-pages"
+	  tal:condition="python:context.batch and(len(context.batch.batches)>1)">
+	<td tal:attributes="colspan python:len(context.headers)">
+	  <tal:block content="structure context/batch/@@pagelet/batch.view" />
+	</td>
+      </tr>
+      <tr>
+	<th tal:repeat="header context/headers"
+	    tal:content="structure header/render"
+	    tal:attributes="id header/id; class header/cssClass"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="record context/records"
+	  tal:attributes="class python:repeat['record'].odd() and 
+			  'z-table-record even' or 'z-table-record odd'">
+	<td tal:repeat="item record"
+	    tal:content="structure item/render"
+	    tal:attributes="id item/id; class item/cssClass"></td>
+      </tr>
+    </tbody>
+    <tfoot tal:condition="python:context.footer is not None"
+	   tal:content="structure context/footer/render"></tfoot>
+  </table>
+  </form>
+
+  <div class="z-table-emtpy"
+       tal:condition="not:context" tal:content="context/msgEmptyTable">
+  </div>
+</div>

@@ -11,19 +11,23 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+from zojax.content.browser.table import IdColumn
+from zojax.statusmessage.interfaces import IStatusMessage
+from zojax.content.space.utils import getWorkspace
 """
 
 $Id$
 """
 from zope import interface, component
 from zope.i18n import translate
+from zope.proxy import removeAllProxies
 from zope.component import getUtility, getUtilitiesFor
 
 from zojax.table.table import Table
 from zojax.table.column import Column
 from zojax.catalog.interfaces import ICatalog
 from zojax.content.type.interfaces import IContentType
-from zojax.content.draft.interfaces import IDraftContentType
+from zojax.content.draft.interfaces import IDraftContentType, DraftException
 from zojax.content.draft.interfaces import ISubmittedDraftContent
 from zojax.content.table.location import LocationColumn
 from zojax.personal.content.interfaces import IContentWorkspace
@@ -80,7 +84,9 @@ class PersonalDraftsTable(Table):
     msgEmptyTable = _(u'You do not have any draft content.')
 
     pageSize = 0
-    enabledColumns = ('typeicon','title','location','draftstatus','modified')
+    enabledColumns = ('id', 'typeicon','title','location','draftstatus','modified')
+
+    updated = False
 
     def initDataset(self):
         context = self.context
@@ -101,6 +107,57 @@ class PersonalDraftsTable(Table):
         else:
             container = context['draft']
             self.dataset = list(container.values())
+            
+    def update(self):
+        if self.updated:
+            return
+
+        context = getWorkspace(self.context)['draft']
+        request = self.request
+
+        if 'form.button.remove' in request:
+            ids = request.get('ids')
+            if not ids:
+                IStatusMessage(request).add(_('Please select draft items.'))
+            else:
+                for id in ids:
+                    if id in context:
+                        del context[id]
+
+                IStatusMessage(request).add(
+                    _('Selected draft items have been removed.'))
+
+        if 'form.button.publish' in request:
+            ids = request.get('ids')
+            if not ids:
+                IStatusMessage(request).add(_('Please select draft items.'))
+            else:
+                for id in ids:
+                    if id in context:
+                        draft = context[id]
+                        try:
+                            content = draft.publish()
+                        except DraftException, err:
+                            IStatusMessage(request).add(str(err), 'error')
+                            return
+                
+                        draft = removeAllProxies(draft)
+                        del draft.__parent__[draft.__name__]
+
+                IStatusMessage(request).add(
+                    _('Selected draft items have been published.'))
+
+        super(PersonalDraftsTable, self).update()
+
+        self.updated = True
+
+             
+class DraftIdColumn(IdColumn):
+
+    buttons = True
+
+    def __bind__(self, content, globalenviron, environ):
+        return super(IdColumn, self).__bind__(content, globalenviron, environ)
 
 
 class LocationColumn(LocationColumn):
