@@ -151,6 +151,6 @@ def getDraftContainer(principal, dct):
     space = IPersonalSpace(principal, None)
     if space is not None:
         wf = getAdapter(space, IContentWorkspaceFactory, 'content')
-        if wf.isAvailable():
+        if space.isEnabled(wf):
             ws = wf.install()
             return ws['draft']
