@@ -1,10 +1,11 @@
-<h2>New content has been submitted.</h2>
+<h2 i18n:translate="">New content has been submitted.</h2>
 <br />
-
-User "<a tal:content="view/author" tal:omit-tag="not:view/space"
+<tal:block i18n:translate="">
+User "<a i18n:name="author" tal:content="view/author" tal:omit-tag="not:view/space"
 	 tal:attributes="href view/space"></a>" submitted content
-<a tal:attributes="href view/url" tal:content="context/title"></a>
+<a i18n:name="title" tal:attributes="href view/url" tal:content="context/title"></a>
 for review.
+</tal:block>
 <br /><br />
 <hr />
 <div>

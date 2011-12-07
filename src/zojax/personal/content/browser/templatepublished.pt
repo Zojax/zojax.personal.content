@@ -1,15 +1,17 @@
-<h2>Your content has been published.</h2>
+<h2 i18n:translate="">Your content has been published.</h2>
 <br />
 
-Content: "<a tal:content="view/title"
+<tal:block i18n:translate="">
+Content: "<a i18n:name="title" tal:content="view/title"
 	    tal:attributes="href view/url"></a>".
+</tal:block>
 <br />
-<tal:block condition="view/comment">
-Comment: <tal:block content="view/comment" />
+<tal:block condition="view/comment" i18n:translate="">
+Comment: <tal:block i18n:name="comment" content="view/comment" />
 </tal:block>
 <br /><br />
 <hr />
-<div>
-  Site: <a tal:attributes="href string:${view/site/@@absolute_url}/"
+<div i18n:translate="">
+  Site: <a i18n:name="title" tal:attributes="href string:${view/site/@@absolute_url}/"
 	   tal:content="view/site/title"></a>
 </div>

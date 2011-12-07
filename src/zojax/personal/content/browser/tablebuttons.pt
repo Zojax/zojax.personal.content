@@ -2,8 +2,10 @@
 <td>
 <div class="z-form-controls">
 <input type="submit" class="z-form-removebutton" 
+       i18n:attributes="value"
        value="Remove" name="form.button.remove" />
 <input type="submit" class="z-form-button" 
+       i18n:attributes="value"
        value="Publish" name="form.button.publish" />
     </div>
 </td>
