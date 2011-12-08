@@ -6,8 +6,8 @@ Content: "<a i18n:name="title" tal:content="view/title"
 	    tal:attributes="href view/url"></a>".
 </tal:block>
 <br />
-<tal:block condition="view/comment">
-Comment: <tal:block i18n:name="comment"content="view/comment" />
+<tal:block condition="view/comment" i18n:translate="">
+Comment: <tal:block i18n:name="comment" content="view/comment" />
 </tal:block>
 <br /><br />
 <hr />
