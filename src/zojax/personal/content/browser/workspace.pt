@@ -1,7 +1,6 @@
 <div class="personal-content" i18n:domain="zojax.personal.content">
-  <h2 tal:content="view/label" i18n:translate=""></h2>
-  <div class="z-page-description" tal:content="view/description"
-       i18n:translate=""></div>
+  <h2 tal:content="view/label"></h2>
+  <div class="z-page-description" tal:content="view/description"></div>
 
   <tal:block content="structure provider:personal.content" />
   <br /><br />

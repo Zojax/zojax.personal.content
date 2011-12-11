@@ -1,2 +1,2 @@
-<span class="discreet" tal:content="view/msg" i18n:translate=""/>
-<tal:block tal:content="view/comment" i18n:translate=""/>
+<span class="discreet" tal:content="view/msg"/>
+<tal:block tal:content="view/comment"/>
