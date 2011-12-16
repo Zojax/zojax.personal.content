@@ -1,0 +1,288 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Corporation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: Development/Unknown\n"
+"POT-Creation-Date: Sun Dec 11 11:25:37 2011\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope3-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: src/zojax/personal/content/activity.py:44
+msgid "Draft status"
+msgstr ""
+
+#: src/zojax/personal/content/activity.py:45
+msgid "Draft status changed."
+msgstr ""
+
+#: src/zojax/personal/content/activity.py:51
+msgid "retracted"
+msgstr ""
+
+#: src/zojax/personal/content/activity.py:58
+msgid "Retracted"
+msgstr ""
+
+#: src/zojax/personal/content/activity.py:59
+msgid "Object retracted."
+msgstr ""
+
+#: src/zojax/personal/content/activity.py:66
+msgid "published"
+msgstr ""
+
+#: src/zojax/personal/content/activity.py:72
+msgid "Published"
+msgstr ""
+
+#: src/zojax/personal/content/activity.py:73
+msgid "Draft published."
+msgstr ""
+
+#: src/zojax/personal/content/browser/activity.py:22
+msgid "Draft submitted."
+msgstr ""
+
+#: src/zojax/personal/content/browser/activity.py:23
+msgid "Draft rejected."
+msgstr ""
+
+#: src/zojax/personal/content/browser/activity.py:24
+msgid "Draft retracted."
+msgstr ""
+
+#: src/zojax/personal/content/browser/activity.py:26
+msgid "submitted draft"
+msgstr ""
+
+#: src/zojax/personal/content/browser/activity.py:27
+msgid "rejected draft"
+msgstr ""
+
+#: src/zojax/personal/content/browser/activity.py:28
+msgid "retracted draft"
+msgstr ""
+
+#: src/zojax/personal/content/browser/activity.py:43
+msgid "Content published."
+msgstr ""
+
+#: src/zojax/personal/content/browser/contenttype.pt:11
+msgid "Your Content: ${title}"
+msgstr ""
+
+#: src/zojax/personal/content/browser/contenttype.pt:3
+msgid "Your Drafts: ${title}"
+msgstr ""
+
+#: src/zojax/personal/content/browser/contenttype.pt:4
+#: src/zojax/personal/content/browser/workspace.pt:12
+msgid "Below is a list of your drafts."
+msgstr ""
+
+#: src/zojax/personal/content/browser/retract.pt:2
+msgid "Are you sure you want retract this content item?"
+msgstr ""
+
+#: src/zojax/personal/content/browser/retract.pt:9
+msgid "Cancel"
+msgstr ""
+
+#: src/zojax/personal/content/browser/retract.py:34
+#: src/zojax/personal/content/browser/retract.pt:12
+msgid "Retract"
+msgstr ""
+
+#: src/zojax/personal/content/browser/retract.py:61
+msgid "Content has been retracted."
+msgstr ""
+
+#: src/zojax/personal/content/browser/retract.py:68
+msgid "Content cannot be retracted."
+msgstr ""
+
+#: src/zojax/personal/content/browser/review.pt:3
+msgid "List of submitted content."
+msgstr ""
+
+#: src/zojax/personal/content/browser/review.py:37
+#: src/zojax/personal/content/review.py:59
+#: src/zojax/personal/content/review.py:86
+#: src/zojax/personal/content/browser/review.pt:2
+msgid "Review content"
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:121
+#: src/zojax/personal/content/browser/table.py:133
+msgid "Please select draft items."
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:128
+msgid "Selected draft items have been removed."
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:148
+msgid "Selected draft items have been published."
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:177
+msgid "Status"
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:44
+#: src/zojax/personal/content/configure.zcml:7
+msgid "Personal content"
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:74
+msgid "You do not have any content."
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:76
+msgid "He/she does not have any content."
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:83
+msgid "Personal Drafts"
+msgstr ""
+
+#: src/zojax/personal/content/browser/table.py:84
+msgid "You do not have any draft content."
+msgstr ""
+
+#: src/zojax/personal/content/browser/tablebuttons.pt:4
+msgid "Remove"
+msgstr ""
+
+#: src/zojax/personal/content/browser/tablebuttons.pt:7
+msgid "Publish"
+msgstr ""
+
+#: src/zojax/personal/content/browser/template.pt:1
+msgid "New content has been submitted."
+msgstr ""
+
+#: src/zojax/personal/content/browser/template.pt:6
+msgid "User \"${author}\" submitted content ${title} for review."
+msgstr ""
+
+#: src/zojax/personal/content/browser/templatepublished.pt:1
+msgid "Your content has been published."
+msgstr ""
+
+#: src/zojax/personal/content/browser/templaterejected.pt:1
+msgid "Your content has been rejected."
+msgstr ""
+
+#: src/zojax/personal/content/browser/templaterejected.pt:10
+#: src/zojax/personal/content/browser/templatepublished.pt:10
+msgid "Comment: ${comment}"
+msgstr ""
+
+#: src/zojax/personal/content/browser/templaterejected.pt:15
+#: src/zojax/personal/content/browser/templatepublished.pt:15
+msgid "Site: ${title}"
+msgstr ""
+
+#: src/zojax/personal/content/browser/templaterejected.pt:5
+#: src/zojax/personal/content/browser/templatepublished.pt:5
+msgid "Content: \"${title}\"."
+msgstr ""
+
+#: src/zojax/personal/content/browser/workspace.pt:11
+msgid "Your Drafts"
+msgstr ""
+
+#: src/zojax/personal/content/browser/workspace.py:36
+msgid "Your Latest Content"
+msgstr ""
+
+#: src/zojax/personal/content/browser/workspace.py:38
+#. Default: ""
+msgid "${user_title}'s Latest Content"
+msgstr ""
+
+#: src/zojax/personal/content/browser/workspace.py:43
+msgid "Below is a list of content items you created."
+msgstr ""
+
+#: src/zojax/personal/content/browser/workspace.py:45
+#. Default: ""
+msgid "Below is a list of content items ${user_title} created."
+msgstr ""
+
+#: src/zojax/personal/content/configure.zcml:7
+msgid "Allow personal content for member."
+msgstr ""
+
+#: src/zojax/personal/content/notifications.py:51
+msgid "Draft"
+msgstr ""
+
+#: src/zojax/personal/content/notifications.py:52
+msgid "Draft events notifications."
+msgstr ""
+
+#: src/zojax/personal/content/notifications.py:58
+msgid "Forum"
+msgstr ""
+
+#: src/zojax/personal/content/notifications.py:59
+msgid "Forum discussions."
+msgstr ""
+
+#: src/zojax/personal/content/portlets/actions.pt:2
+msgid "Actions"
+msgstr ""
+
+#: src/zojax/personal/content/portlets/configure.zcml:14
+msgid "Your stuff right column"
+msgstr ""
+
+#: src/zojax/personal/content/portlets/configure.zcml:23
+msgid "Review workspace left portlets"
+msgstr ""
+
+#: src/zojax/personal/content/portlets/configure.zcml:29
+msgid "Review workspace right portlets"
+msgstr ""
+
+#: src/zojax/personal/content/portlets/configure.zcml:37
+#: src/zojax/personal/content/portlets/stuff.pt:3
+msgid "Your Stuff"
+msgstr ""
+
+#: src/zojax/personal/content/portlets/configure.zcml:7
+msgid "Your stuff left column"
+msgstr ""
+
+#: src/zojax/personal/content/portlets/interfaces.py:25
+msgid "Portlets"
+msgstr ""
+
+#: src/zojax/personal/content/portlets/stuff.pt:9
+msgid "Overview"
+msgstr ""
+
+#: src/zojax/personal/content/workspace.py:47
+#: src/zojax/personal/content/workspace.py:91
+#: src/zojax/personal/content/workspace.py:105
+msgid "Your stuff"
+msgstr ""
+
